@@ -1576,12 +1576,42 @@ def compare_graph_searchers():
                       header=['Searcher', 'romania_map(Arad, Bucharest)',
                               'romania_map(Oradea, Neamt)', 'australia_map'])
 
+
 #########################################################################################
 # ALL CODE BELOW WRITTEN FOR COM S 472 Lab 1 Assignment
 # @author Ryan Herren
 
+
+def check_solvable(state):
+    n = len(state)
+    count = 0
+    for i in range(n):
+        for j in range(i + 1, n):
+            if state[i] > state[j]:
+                if state[j] != 0:
+                    count += 1
+    #     print(count)
+    if count % 2 == 1:
+        return False
+    return True
+
+
+def display_board(board):
+    count = 0
+    s = ""
+    for i in board:
+        if count % 3 == 0:
+            s += "\n"
+        s += (" " + str(i) + " ")
+        count += 1
+    s += "\n"
+    return s
+
+
+# RUN
+
 initial = (1, 2, 3, 4, 6, 8, 7, 5, 0)
-initial2 = (5,3,1,0,8,7,2,6,4)
+initial2 = (5, 3, 1, 0, 8, 7, 2, 6, 4)
 puzzle = EightPuzzle(initial)
 start_time = time.time()
 end_state = astar_search(puzzle)
