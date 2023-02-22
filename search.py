@@ -299,6 +299,7 @@ def uniform_cost_search(problem, display=False):
 
 cnt = 0
 
+
 def depth_limited_search(problem, limit=50):
     """[Figure 3.17]"""
 
@@ -666,6 +667,187 @@ class EightPuzzle3(Problem):
     # TODO
     def h(self, node):
         """ Return a custom heuristic value for a given state."""
+        """ Function is computing total Manhattan distance for all tiles."""
+        """ Values are hard coded based on goal state """
+        """ so if tile 1 is in the top left slot, distance from tile 1 goal is 0"""
+        """ If tile 1 is in the middle slot, distance from tile 1 goal is 2 """
+        state = node.state
+        total_manhattan = 0
+        for i in state:
+            if i == 0:
+                if state[i] == 1:
+                    total_manhattan += 1
+                if state[i] == 2:
+                    total_manhattan += 0
+                if state[i] == 3:
+                    total_manhattan += 2
+                if state[i] == 4:
+                    total_manhattan += 1
+                if state[i] == 5:
+                    total_manhattan += 2
+                if state[i] == 6:
+                    total_manhattan += 3
+                if state[i] == 7:
+                    total_manhattan += 2
+                if state[i] == 8:
+                    total_manhattan += 3
+                if state[i] == 0:
+                    total_manhattan += 4
+            if i == 1:
+                if state[i] == 1:
+                    total_manhattan += 0
+                if state[i] == 2:
+                    total_manhattan += 1
+                if state[i] == 3:
+                    total_manhattan += 1
+                if state[i] == 4:
+                    total_manhattan += 2
+                if state[i] == 5:
+                    total_manhattan += 1
+                if state[i] == 6:
+                    total_manhattan += 2
+                if state[i] == 7:
+                    total_manhattan += 3
+                if state[i] == 8:
+                    total_manhattan += 2
+                if state[i] == 0:
+                    total_manhattan += 3
+            if i == 2:
+                if state[i] == 1:
+                    total_manhattan += 2
+                if state[i] == 2:
+                    total_manhattan += 1
+                if state[i] == 3:
+                    total_manhattan += 0
+                if state[i] == 4:
+                    total_manhattan += 3
+                if state[i] == 5:
+                    total_manhattan += 2
+                if state[i] == 6:
+                    total_manhattan += 1
+                if state[i] == 7:
+                    total_manhattan += 4
+                if state[i] == 8:
+                    total_manhattan += 3
+                if state[i] == 0:
+                    total_manhattan += 2
+            if i == 3:
+                if state[i] == 1:
+                    total_manhattan += 1
+                if state[i] == 2:
+                    total_manhattan += 2
+                if state[i] == 3:
+                    total_manhattan += 3
+                if state[i] == 4:
+                    total_manhattan += 0
+                if state[i] == 5:
+                    total_manhattan += 1
+                if state[i] == 6:
+                    total_manhattan += 2
+                if state[i] == 7:
+                    total_manhattan += 1
+                if state[i] == 8:
+                    total_manhattan += 2
+                if state[i] == 0:
+                    total_manhattan += 3
+            if i == 4:
+                if state[i] == 1:
+                    total_manhattan += 2
+                if state[i] == 2:
+                    total_manhattan += 1
+                if state[i] == 3:
+                    total_manhattan += 2
+                if state[i] == 4:
+                    total_manhattan += 1
+                if state[i] == 5:
+                    total_manhattan += 0
+                if state[i] == 6:
+                    total_manhattan += 1
+                if state[i] == 7:
+                    total_manhattan += 2
+                if state[i] == 8:
+                    total_manhattan += 1
+                if state[i] == 0:
+                    total_manhattan += 2
+            if i == 5:
+                if state[i] == 1:
+                    total_manhattan += 3
+                if state[i] == 2:
+                    total_manhattan += 2
+                if state[i] == 3:
+                    total_manhattan += 1
+                if state[i] == 4:
+                    total_manhattan += 2
+                if state[i] == 5:
+                    total_manhattan += 1
+                if state[i] == 6:
+                    total_manhattan += 0
+                if state[i] == 7:
+                    total_manhattan += 3
+                if state[i] == 8:
+                    total_manhattan += 2
+                if state[i] == 0:
+                    total_manhattan += 1
+            if i == 6:
+                if state[i] == 1:
+                    total_manhattan += 2
+                if state[i] == 2:
+                    total_manhattan += 3
+                if state[i] == 3:
+                    total_manhattan += 4
+                if state[i] == 4:
+                    total_manhattan += 1
+                if state[i] == 5:
+                    total_manhattan += 2
+                if state[i] == 6:
+                    total_manhattan += 3
+                if state[i] == 7:
+                    total_manhattan += 0
+                if state[i] == 8:
+                    total_manhattan += 1
+                if state[i] == 0:
+                    total_manhattan += 2
+            if i == 7:
+                if state[i] == 1:
+                    total_manhattan += 3
+                if state[i] == 2:
+                    total_manhattan += 2
+                if state[i] == 3:
+                    total_manhattan += 3
+                if state[i] == 4:
+                    total_manhattan += 2
+                if state[i] == 5:
+                    total_manhattan += 1
+                if state[i] == 6:
+                    total_manhattan += 2
+                if state[i] == 7:
+                    total_manhattan += 1
+                if state[i] == 8:
+                    total_manhattan += 0
+                if state[i] == 0:
+                    total_manhattan += 1
+            if i == 8:
+                if state[i] == 1:
+                    total_manhattan += 4
+                if state[i] == 2:
+                    total_manhattan += 3
+                if state[i] == 3:
+                    total_manhattan += 2
+                if state[i] == 4:
+                    total_manhattan += 3
+                if state[i] == 5:
+                    total_manhattan += 2
+                if state[i] == 6:
+                    total_manhattan += 1
+                if state[i] == 7:
+                    total_manhattan += 2
+                if state[i] == 8:
+                    total_manhattan += 1
+                if state[i] == 0:
+                    total_manhattan += 0
+
+        return total_manhattan
+
 
 # ______________________________________________________________________________
 
@@ -1828,8 +2010,10 @@ def main(argv):
     l1 = []
     for i in initial:
         l1.append(int(i))
+
     puzzle = EightPuzzle(tuple(l1))
     puzzle2 = EightPuzzle2(tuple(l1))
+    puzzle3 = EightPuzzle3(tuple(l1))
 
     # CHOOSE ALGORITHM
     if alg in ("BFS", "bfs"):
@@ -1857,16 +2041,14 @@ def main(argv):
         print(end_state.solution())
         print()
     elif alg in ("H3", "h3"):
-        return "Not yet implemented"
         start_time = time.time()
-        end_state = astar_search(puzzle)
+        end_state = astar_search(puzzle3)
         print("time:", time.time() - start_time)
         print(end_state.solution())
         print()
 
-
     return "fin"
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])
-
