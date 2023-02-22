@@ -1591,7 +1591,7 @@ def check_solvable(state):
             if state[i] > state[j]:
                 if state[j] != 0:
                     count += 1
-    #     print(count)
+        # print("num inversions",count)
     if count % 2 == 1:
         return False
     return True
@@ -1621,6 +1621,7 @@ def read_board(input):
 
 
 def main(argv):
+    # READ INPUT FROM COMMAND LINE
     inputfile = ''
     outputfile = ''
     opts, args = getopt.getopt(argv, "hi:o:", ["fPath=", "alg="])
@@ -1634,32 +1635,35 @@ def main(argv):
             alg = arg
     print('Input file is', inputfile)
     print('Algorithm is', alg)
-    new_in = "tests_472/"+inputfile
+    # READ FROM SPECIFIED FILE
+    new_in = "tests_472/" + inputfile
     temp = read_board(new_in)
     initial = ()
     for i in temp:
         # print (type(i))
-        initial = initial + (i,)
+        if i == "_":
+            initial = initial + ('0',)
+        else:
+            initial = initial + (i,)
 
-    print(initial)
+    # CHECK INVERSIONS FOR SOLVABILITY
+    if not check_solvable(initial):
+        return("The inputted puzzle is not solvable: ", display_board(initial))
 
+    # FORMAT PUZZLE
+    l1 = []
+    for i in initial:
+        l1.append(int(i))
+    puzzle = EightPuzzle(tuple(l1))
+
+    # BEGIN COMPUTATIONS
+    start_time = time.time()
+    end_state = astar_search(puzzle)
+    print("\ntime:", time.time() - start_time)
+    print(end_state.solution())
+
+    return "fin"
 
 if __name__ == "__main__":
     main(sys.argv[1:])
 
-# temp = read_board(filename)
-# initial = ('',)
-# for i in temp:
-#     # print (type(i))
-#     initial = initial + (i,)
-#
-# print(initial)
-#
-# initial = (1, 2, 3, 4, 6, 8, 7, 5, 0)
-# initial2 = (5, 3, 1, 0, 8, 7, 2, 6, 4)
-# print(type(initial))
-# puzzle = EightPuzzle(initial)
-# start_time = time.time()
-# end_state = astar_search(puzzle)
-# print("\ntime:", time.time() - start_time)
-# print(end_state.solution())
