@@ -254,6 +254,8 @@ def breadth_first_graph_search(problem):
         for child in node.expand(problem):
             if child.state not in explored and child not in frontier:
                 if problem.goal_test(child.state):
+                    print()
+                    print("Total nodes generated:", len(frontier))
                     return child
                 frontier.append(child)
     return None
@@ -275,6 +277,7 @@ def best_first_graph_search(problem, f, display=False):
     while frontier:
         node = frontier.pop()
         if problem.goal_test(node.state):
+            print("\nTotal nodes generated:", len(frontier))
             if display:
                 print(len(explored), "paths have been expanded and", len(frontier), "paths remain in the frontier")
             return node
@@ -294,17 +297,22 @@ def uniform_cost_search(problem, display=False):
     return best_first_graph_search(problem, lambda node: node.path_cost, display)
 
 
+cnt = 0
+
 def depth_limited_search(problem, limit=50):
     """[Figure 3.17]"""
 
     def recursive_dls(node, problem, limit):
+        global cnt
         if problem.goal_test(node.state):
+            print("\nTotal nodes generated:", cnt)
             return node
         elif limit == 0:
             return 'cutoff'
         else:
             cutoff_occurred = False
             for child in node.expand(problem):
+                cnt = cnt + 1
                 result = recursive_dls(child, problem, limit - 1)
                 if result == 'cutoff':
                     cutoff_occurred = True
@@ -657,7 +665,7 @@ class EightPuzzle3(Problem):
 
     # TODO
     def h(self, node):
-        """ Return the heuristic value for a given state."""
+        """ Return a custom heuristic value for a given state."""
 
 # ______________________________________________________________________________
 
@@ -1825,32 +1833,32 @@ def main(argv):
     if alg in ("BFS", "bfs"):
         start_time = time.time()
         end_state = breadth_first_graph_search(puzzle)
-        print("\ntime:", time.time() - start_time)
+        print("time:", time.time() - start_time)
         print(end_state.solution())
         print()
     elif alg in ("IDS", "ids"):
         start_time = time.time()
         end_state = iterative_deepening_search(puzzle)
-        print("\ntime:", time.time() - start_time)
+        print("time:", time.time() - start_time)
         print(end_state.solution())
         print()
     elif alg in ("H1", "h1"):
         start_time = time.time()
         end_state = astar_search(puzzle)
-        print("\ntime:", time.time() - start_time)
+        print("time:", time.time() - start_time)
         print(end_state.solution())
         print()
     elif alg in ("H2", "h2"):
         start_time = time.time()
         end_state = astar_search(puzzle2)
-        print("\ntime:", time.time() - start_time)
+        print("time:", time.time() - start_time)
         print(end_state.solution())
         print()
     elif alg in ("H3", "h3"):
         return "Not yet implemented"
         start_time = time.time()
         end_state = astar_search(puzzle)
-        print("\ntime:", time.time() - start_time)
+        print("time:", time.time() - start_time)
         print(end_state.solution())
         print()
 
