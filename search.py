@@ -7,6 +7,7 @@ functions.
 """
 
 import sys
+import getopt
 from collections import deque
 
 from utils import *
@@ -1619,17 +1620,46 @@ def read_board(input):
     return puzzle_array
 
 
-filename = sys.argv[1]
-temp = read_board(filename)
-for index, i in enumerate(temp):
-    if i == '':
-        temp[index] = 0
+def main(argv):
+    inputfile = ''
+    outputfile = ''
+    opts, args = getopt.getopt(argv, "hi:o:", ["fPath=", "alg="])
+    for opt, arg in opts:
+        if opt == '-h':
+            print('test.py -i <inputfile> -alg <algorithm>')
+            sys.exit()
+        elif opt in ("-i", "--fPath"):
+            inputfile = arg
+        elif opt in ("-alg", "--alg"):
+            alg = arg
+    print('Input file is', inputfile)
+    print('Algorithm is', alg)
+    new_in = "tests_472/"+inputfile
+    temp = read_board(new_in)
+    initial = ()
+    for i in temp:
+        # print (type(i))
+        initial = initial + (i,)
+
+    print(initial)
 
 
-initial = (1, 2, 3, 4, 6, 8, 7, 5, 0)
-initial2 = (5, 3, 1, 0, 8, 7, 2, 6, 4)
-puzzle = EightPuzzle(initial)
-start_time = time.time()
-end_state = astar_search(puzzle)
-print("\ntime:", time.time() - start_time)
-print(end_state.solution())
+if __name__ == "__main__":
+    main(sys.argv[1:])
+
+# temp = read_board(filename)
+# initial = ('',)
+# for i in temp:
+#     # print (type(i))
+#     initial = initial + (i,)
+#
+# print(initial)
+#
+# initial = (1, 2, 3, 4, 6, 8, 7, 5, 0)
+# initial2 = (5, 3, 1, 0, 8, 7, 2, 6, 4)
+# print(type(initial))
+# puzzle = EightPuzzle(initial)
+# start_time = time.time()
+# end_state = astar_search(puzzle)
+# print("\ntime:", time.time() - start_time)
+# print(end_state.solution())
