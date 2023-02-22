@@ -1648,7 +1648,8 @@ def main(argv):
 
     # CHECK INVERSIONS FOR SOLVABILITY
     if not check_solvable(initial):
-        return("The inputted puzzle is not solvable: ", display_board(initial))
+        print("The inputted puzzle is not solvable: ", display_board(initial))
+        return 0
 
     # FORMAT PUZZLE
     l1 = []
