@@ -1610,6 +1610,22 @@ def display_board(board):
 
 # RUN
 
+def read_board(input):
+    with open(input, 'r') as f:
+        lines = f.readlines()
+    puzzle_array = []
+    for line in lines:
+        puzzle_array.extend([i for i in line.strip().split()])
+    return puzzle_array
+
+
+filename = sys.argv[1]
+temp = read_board(filename)
+for index, i in enumerate(temp):
+    if i == '':
+        temp[index] = 0
+
+
 initial = (1, 2, 3, 4, 6, 8, 7, 5, 0)
 initial2 = (5, 3, 1, 0, 8, 7, 2, 6, 4)
 puzzle = EightPuzzle(initial)
