@@ -1656,11 +1656,40 @@ def main(argv):
         l1.append(int(i))
     puzzle = EightPuzzle(tuple(l1))
 
-    # BEGIN COMPUTATIONS
-    start_time = time.time()
-    end_state = astar_search(puzzle)
-    print("\ntime:", time.time() - start_time)
-    print(end_state.solution())
+    # CHOOSE ALGORITHM
+    if alg in ("BFS", "bfs"):
+        start_time = time.time()
+        end_state = breadth_first_graph_search(puzzle)
+        print("\ntime:", time.time() - start_time)
+        print(end_state.solution())
+        print()
+    elif alg in ("IDS", "ids"):
+        start_time = time.time()
+        end_state = iterative_deepening_search(puzzle)
+        print("\ntime:", time.time() - start_time)
+        print(end_state.solution())
+        print()
+    elif alg in ("H1", "h1"):
+        start_time = time.time()
+        end_state = astar_search(puzzle)
+        print("\ntime:", time.time() - start_time)
+        print(end_state.solution())
+        print()
+    elif alg in ("H2", "h2"):
+        return "Not yet implemented"
+        start_time = time.time()
+        end_state = astar_search(puzzle)
+        print("\ntime:", time.time() - start_time)
+        print(end_state.solution())
+        print()
+    elif alg in ("H3", "h3"):
+        return "Not yet implemented"
+        start_time = time.time()
+        end_state = astar_search(puzzle)
+        print("\ntime:", time.time() - start_time)
+        print(end_state.solution())
+        print()
+
 
     return "fin"
 
