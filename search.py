@@ -558,7 +558,9 @@ class EightPuzzle2(Problem):
         return inversion % 2 == 0
 
     def h(self, node):
-        """ Return the heuristic value for a given state."""
+        """ Return the heuristic value for a given state
+        based on Manhattan distance from current location'
+        of blank space to goal location of blank space"""
 
         def find_blank(node):
             num = 0
@@ -570,9 +572,17 @@ class EightPuzzle2(Problem):
 
         num = find_blank(node)
         # Manhattan Heuristic Function (computations by hand, hardcoded)
+        # 1 2 3
+        # 4 5 6
+        # 7 8 9
+        # The grid above represents the numbers of each slot of the puzzle
+        # Each number represents a slot with a tile
+        # This function finds the spot of the blank, and then returns
+        # its Manhattan distance from slot 9, the constant goal slot
+        # of the blank in our current goal state
         if num in (8, 6):
             return 1
-        elif num in (3, 5, 6):
+        elif num in (3, 5, 7):
             return 2
         elif num in (2, 4):
             return 3
