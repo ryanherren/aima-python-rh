@@ -12,7 +12,7 @@ python search.py --fPath 116253.txt --alg h1
 python search.py --fPath 116300.txt --alg h1
 python search.py --fPath 116311.txt --alg h1
 python search.py --fPath 116367.txt --alg h1
-python search.py --fPath 116469.txt --alg h1
+python search.py --fPath 116369.txt --alg h1
 python search.py --fPath 116466.txt --alg h1
 python search.py --fPath 116486.txt --alg h1
 python search.py --fPath 116698.txt --alg h1
@@ -36,7 +36,7 @@ python search.py --fPath 116253.txt --alg h2
 python search.py --fPath 116300.txt --alg h2
 python search.py --fPath 116311.txt --alg h2
 python search.py --fPath 116367.txt --alg h2
-python search.py --fPath 116469.txt --alg h2
+python search.py --fPath 116369.txt --alg h2
 python search.py --fPath 116466.txt --alg h2
 python search.py --fPath 116486.txt --alg h2
 python search.py --fPath 116698.txt --alg h2
@@ -60,7 +60,7 @@ python search.py --fPath 116253.txt --alg bfs
 python search.py --fPath 116300.txt --alg bfs
 python search.py --fPath 116311.txt --alg bfs
 python search.py --fPath 116367.txt --alg bfs
-python search.py --fPath 116469.txt --alg bfs
+python search.py --fPath 116369.txt --alg bfs
 python search.py --fPath 116466.txt --alg bfs
 python search.py --fPath 116486.txt --alg bfs
 python search.py --fPath 116698.txt --alg bfs
@@ -84,7 +84,7 @@ python search.py --fPath 116253.txt --alg ids
 python search.py --fPath 116300.txt --alg ids
 python search.py --fPath 116311.txt --alg ids
 python search.py --fPath 116367.txt --alg ids
-python search.py --fPath 116469.txt --alg ids
+python search.py --fPath 116369.txt --alg ids
 python search.py --fPath 116466.txt --alg ids
 python search.py --fPath 116486.txt --alg ids
 python search.py --fPath 116698.txt --alg ids
