@@ -443,17 +443,17 @@ class EightPuzzle(Problem):
         The result would be a list, since there are only four possible actions
         in any given state of the environment """
 
-        possible_actions = ['UP', 'DOWN', 'LEFT', 'RIGHT']
+        possible_actions = ['D', 'U', 'R', 'L']
         index_blank_square = self.find_blank_square(state)
 
         if index_blank_square % 3 == 0:
-            possible_actions.remove('LEFT')
+            possible_actions.remove('R')
         if index_blank_square < 3:
-            possible_actions.remove('UP')
+            possible_actions.remove('D')
         if index_blank_square % 3 == 2:
-            possible_actions.remove('RIGHT')
+            possible_actions.remove('L')
         if index_blank_square > 5:
-            possible_actions.remove('DOWN')
+            possible_actions.remove('U')
 
         return possible_actions
 
@@ -465,7 +465,7 @@ class EightPuzzle(Problem):
         blank = self.find_blank_square(state)
         new_state = list(state)
 
-        delta = {'UP': -3, 'DOWN': 3, 'LEFT': -1, 'RIGHT': 1}
+        delta = {'D': -3, 'U': 3, 'R': -1, 'L': 1}
         neighbor = blank + delta[action]
         new_state[blank], new_state[neighbor] = new_state[neighbor], new_state[blank]
 
