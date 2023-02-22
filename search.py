@@ -10,6 +10,7 @@ import sys
 from collections import deque
 
 from utils import *
+import time
 
 
 class Problem:
@@ -1574,3 +1575,15 @@ def compare_graph_searchers():
                                 GraphProblem('Q', 'WA', australia_map)],
                       header=['Searcher', 'romania_map(Arad, Bucharest)',
                               'romania_map(Oradea, Neamt)', 'australia_map'])
+
+#########################################################################################
+# ALL CODE BELOW WRITTEN FOR COM S 472 Lab 1 Assignment
+# @author Ryan Herren
+
+initial = (1, 2, 3, 4, 6, 8, 7, 5, 0)
+initial2 = (5,3,1,0,8,7,2,6,4)
+puzzle = EightPuzzle(initial)
+start_time = time.time()
+end_state = astar_search(puzzle)
+print("\ntime:", time.time() - start_time)
+print(end_state.solution())
