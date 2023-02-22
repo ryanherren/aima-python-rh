@@ -1821,6 +1821,8 @@ def main(argv):
     if not check_solvable(initial):
         print("The inputted puzzle is not solvable: ", display_board(initial))
         return 0
+    else:
+        print("is solvable")
 
     # FORMAT PUZZLE
     l1 = []
