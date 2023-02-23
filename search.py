@@ -1936,20 +1936,7 @@ def compare_graph_searchers():
 # ALL CODE BELOW WRITTEN FOR COM S 472 Lab 1 Assignment
 # @author Ryan Herren
 
-def check_solvable(state):
-    n = len(state)
-    count = 0
-    for i in range(n):
-        for j in range(i + 1, n):
-            if state[i] > state[j]:
-                if state[j] != 0:
-                    count += 1
-        # print("num inversions",count)
-    if count % 2 == 1:
-        return False
-    return True
-
-
+# Displays board in 3x3 format
 def display_board(board):
     count = 0
     s = ""
@@ -1962,8 +1949,7 @@ def display_board(board):
     return s
 
 
-# RUN
-
+# Reads input from file
 def read_board(input):
     with open(input, 'r') as f:
         lines = f.readlines()
@@ -1972,7 +1958,7 @@ def read_board(input):
         puzzle_array.extend([i for i in line.strip().split()])
     return puzzle_array
 
-
+# RUN
 def main(argv):
     # READ INPUT FROM COMMAND LINE
     inputfile = ''
@@ -1993,57 +1979,88 @@ def main(argv):
     temp = read_board(new_in)
     initial = ()
     for i in temp:
-        # print (type(i))
         if i == "_":
             initial = initial + ('0',)
         else:
             initial = initial + (i,)
-
-    # CHECK INVERSIONS FOR SOLVABILITY
-    if not check_solvable(initial):
-        print("The inputted puzzle is not solvable: ", display_board(initial))
-        return 0
-    else:
-        print("is solvable")
 
     # FORMAT PUZZLE
     l1 = []
     for i in initial:
         l1.append(int(i))
 
+    # INITIALIZE PUZZLES
+    # Puzzle is used for BFS, IDS, and H1
+    # Puzzle2 is used for H2
+    # Puzzle3 is used for H3
     puzzle = EightPuzzle(tuple(l1))
     puzzle2 = EightPuzzle2(tuple(l1))
     puzzle3 = EightPuzzle3(tuple(l1))
 
     # CHOOSE ALGORITHM
     if alg in ("BFS", "bfs"):
+        # CHECK SOLVABILITY
+        if not EightPuzzle.check_solvability(puzzle, puzzle.goal):
+            print("The inputted puzzle is not solvable: ", display_board(initial))
+            return 0
+        else:
+            print("Puzzle is solvable... begin solving")
         start_time = time.time()
         end_state = breadth_first_graph_search(puzzle)
-        print("time:", time.time() - start_time)
+        print("Total time taken (seconds):", time.time() - start_time)
+        print("Path length:", len(end_state.solution()))
         print(end_state.solution())
         print()
     elif alg in ("IDS", "ids"):
+        # CHECK SOLVABILITY
+        if not EightPuzzle.check_solvability(puzzle, puzzle.goal):
+            print("The inputted puzzle is not solvable: ", display_board(initial))
+            return 0
+        else:
+            print("Puzzle is solvable... begin solving")
         start_time = time.time()
         end_state = iterative_deepening_search(puzzle)
-        print("time:", time.time() - start_time)
+        print("Total time taken (seconds):", time.time() - start_time)
+        print("Path length:", len(end_state.solution()))
         print(end_state.solution())
         print()
     elif alg in ("H1", "h1"):
+        # CHECK SOLVABILITY
+        if not EightPuzzle.check_solvability(puzzle, puzzle.goal):
+            print("The inputted puzzle is not solvable: ", display_board(initial))
+            return 0
+        else:
+            print("Puzzle is solvable... begin solving")
         start_time = time.time()
         end_state = astar_search(puzzle)
-        print("time:", time.time() - start_time)
+        print("Total time taken (seconds):", time.time() - start_time)
+        print("Path length:", len(end_state.solution()))
         print(end_state.solution())
         print()
     elif alg in ("H2", "h2"):
+        # CHECK SOLVABILITY
+        if not EightPuzzle.check_solvability(puzzle2, puzzle2.goal):
+            print("The inputted puzzle is not solvable: ", display_board(initial))
+            return 0
+        else:
+            print("Puzzle is solvable... begin solving")
         start_time = time.time()
         end_state = astar_search(puzzle2)
-        print("time:", time.time() - start_time)
+        print("Total time taken (seconds):", time.time() - start_time)
+        print("Path length:", len(end_state.solution()))
         print(end_state.solution())
         print()
     elif alg in ("H3", "h3"):
+        # CHECK SOLVABILITY
+        if not EightPuzzle.check_solvability(puzzle3, puzzle3.goal):
+            print("The inputted puzzle is not solvable: ", display_board(initial))
+            return 0
+        else:
+            print("Puzzle is solvable... begin solving")
         start_time = time.time()
         end_state = astar_search(puzzle3)
-        print("time:", time.time() - start_time)
+        print("Total time taken (seconds):", time.time() - start_time)
+        print("Path length:", len(end_state.solution()))
         print(end_state.solution())
         print()
 
@@ -2052,3 +2069,4 @@ def main(argv):
 
 if __name__ == "__main__":
     main(sys.argv[1:])
+
